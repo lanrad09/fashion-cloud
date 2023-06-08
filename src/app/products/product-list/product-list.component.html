@@ -1,0 +1,26 @@
+<div class="container" *ngIf="products.length > 0">
+  <mat-card class="product-card" *ngFor="let product of products">
+    <mat-card-header>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Name: {{ product.name }}
+      </p>
+      <p>
+        Stock: "Stock N0"
+      </p>
+      <p>
+        Price: "Price"
+      </p>
+      <p>
+        Brand name: "Brand name"
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>DETAILS</button>
+      <button mat-button color="primary">EDIT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<p class="info-text mat-body-1" *ngIf="products.length <= 0">No products added yet!</p>

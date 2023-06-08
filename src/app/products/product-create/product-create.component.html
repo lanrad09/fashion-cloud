@@ -1,0 +1,55 @@
+<mat-card>
+    <form (submit)="onAddProduct(productForm)" #productForm="ngForm">
+        <div>
+        <mat-form-field>
+             <input 
+                matInput 
+                type="text"
+                name="name"
+                ngModel
+                required
+                minlength="3"
+                placeholder="Product Name"
+                #name="ngModel">
+                <mat-error *ngIf="name.invalid">Please enter the product name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input 
+                 matInput 
+                 type="text"
+                 name="gtin"
+                 ngModel
+                 required
+                 placeholder="GTIN"
+                 #gtin="ngModel">
+                 <mat-error *ngIf="gtin.invalid">Please enter the brand name</mat-error>
+         </mat-form-field>
+        <mat-form-field>
+           <input 
+                matInput 
+                type="text"
+                name="brandName"
+                ngModel
+                required
+                placeholder="Brand name"
+                #brandName="ngModel">
+                <mat-error *ngIf="brandName.invalid">Please enter the brand name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input 
+                matInput 
+                type="text"
+                name="price"
+                ngModel
+                required
+                placeholder="Product price"
+                #price="ngModel">
+                <mat-error *ngIf="price.invalid">Please enter the product's price</mat-error>
+        </mat-form-field>
+    </div>
+ 
+        <button mat-raised-button type="submit">Save Product</button>        
+    </form>
+    
+</mat-card>
