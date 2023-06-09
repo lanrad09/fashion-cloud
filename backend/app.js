@@ -14,6 +14,16 @@ app.use((req, res, next)=> {
     next();
 });
 
+app.post("/api/products", (req, res, next)=> {
+    // create a product
+    const product = req.body;
+    console.log(product);
+    res.status(201).json({ 
+        message : "Product created successfully!"
+    });
+
+});
+
 app.get("/api/products", (req, res, next)=> {
     const products = [
         {
