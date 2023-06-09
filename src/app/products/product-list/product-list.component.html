@@ -1,4 +1,30 @@
-<div class="container" *ngIf="products.length > 0">
+<h3>Filter Options</h3>
+<div class="ola">
+
+  <div>
+    <label for="brand">BrandFilter:</label>
+    <select id="brand" [(ngModel)]="selectedBrand" (ngModelChange)="filterByBrand()">
+      <option value="">All</option>
+      <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="category">CategoryFilter:</label>
+    <select id="category" [(ngModel)]="selectedCategory" (ngModelChange)="filterByCategory()">
+      <option value="">All</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="brand">Sort Options:</label>
+    <select id="brand" [(ngModel)]="selectedBrand" (ngModelChange)="filterByBrand()">
+      <option value="">All</option>
+      <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="container" *ngIf="products.length > 0">  
   <mat-card class="product-card" *ngFor="let product of products">
     <mat-card-header>
     </mat-card-header>
@@ -24,3 +50,4 @@
   </mat-card>
 </div>
 <p class="info-text mat-body-1" *ngIf="products.length <= 0">No products added yet!</p>
+

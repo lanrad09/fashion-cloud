@@ -13,16 +13,31 @@ import { ProductsService } from '../products.service';
 })
 
 // you wil end substriction to prevent memory leak
-export class ProductListCompoent implements OnInit {
+export class ProductListComponent implements OnInit {
+
+    selectedCategory: string;
+    selectedBrand: string;
+    categories: string[];
+    brands: string[];
     
     products: Product[]= [];
+    filteredProducts: any[];
+
+    // 
+
+    uniqueBrands: string[] = [];
+    uniqueCategories: string[] = [];
+
+    selectedSort: string = '';
+
+    // 
     
     private productsSub: Subscription;
 
     constructor(public productsService: ProductsService) {}
 
     ngOnInit() {
-         // this.products = this.productsService.getProducts();
+        // this.products = this.productsService.getProducts();
         this.productsService.getProducts();
         this.productsSub = this.productsService.getProductUpdateListener().subscribe((products: Product[])=> {
             this.products = products;
@@ -34,5 +49,51 @@ export class ProductListCompoent implements OnInit {
     ngOnDestroy() {
         this.productsSub.unsubscribe();
     }
+
+    // 
+    getUniqueBrands() {
+        this.uniqueBrands = [...new Set(this.products.map((product) => product.brandName))];
+      }
+
+      getUniqueCategories() {
+        this.uniqueCategories = [...new Set(this.products.map((product) => product.category))];
+      }
+
+      applyFilters() {
+        let  products = [...this.products];
+    
+        if (this.selectedBrand) {
+          products =  products.filter((product) => product.brandName === this.selectedBrand);
+        }
+    
+        if (this.selectedCategory) {
+          products =  products.filter((product) => product.category === this.selectedCategory);
+        }
+    
+        if (this.selectedSort) {
+          products.sort((a, b) => {
+            if (this.selectedSort === 'name') {
+              return a.name.localeCompare(b.name);
+            } else if (this.selectedSort === 'brand') {
+              return a.brandName.localeCompare(b.brandName);
+            } else {
+              return 0;
+            }
+          });
+        }
+    
+        this. products =  products;
+      }
+
+    // 
+
+    filterByCategory() {
+        this.productsService.filterByCategory(this.selectedCategory);
+      }
+
+      filterByBrand() {
+        this.productsService.filterByBrand(this.selectedBrand);
+      }
+    
 
 }

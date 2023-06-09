@@ -14,14 +14,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductCreateComponent } from './products/product-create/product-create.component';
 import { HeaderComponent } from './header/header.component';
-import { ProductListCompoent } from './products/product-list/product-list.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductCreateComponent,
     HeaderComponent,
-    ProductListCompoent
+    ProductListComponent
     
   ],
   imports: [

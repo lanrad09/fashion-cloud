@@ -23,8 +23,8 @@ export class ProductCreateComponent {
         if (form.invalid) {
             return;
         }
-
-        this.productsService.addProduct(form.value.name,form.value.gtin,form.value.brandName,form.value.price);
+// Question mark?
+        this.productsService.addProduct(form.value.name,form.value.gtin,form.value.brandName,form.value.price, form.value.brandName);
         form.resetForm();
 
         // console.log("I am adding product!")

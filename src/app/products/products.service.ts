@@ -31,10 +31,41 @@ export class ProductsService {
         return this.productsUpdate.asObservable();
     }
 
-    addProduct(name: string, gtin: string,  price: string, brandName: string){
-        const product: Product = {id:null, name: name, gtin: gtin, price: price, brandName:brandName}
+    addProduct(name: string, gtin: string,  category: string, price: string, brandName: string){
+        const product: Product = {id:null, name: name, gtin: gtin, category: category, price: price, brandName:brandName}
         this.products.push(product)
         this.productsUpdate.next([...this.products]);    
     }
+
+    // 
+    getCategories() {
+        // Extract unique categories from products
+        return [...new Set(this.products.map(product => product.category))];
+      }
+
+      getBrands() {
+        // Extract unique brands from products
+        return [...new Set(this.products.map(product => product.brandName))];
+      }
+
+      filterByCategory(category: string) {
+        if (category) {
+          const filtered = this.products.filter(product => product.category === category);
+          this.productsUpdate.next(filtered);
+        } else {
+          this.productsUpdate.next(this.products);
+        }
+      }
+
+      filterByBrand(brand: string) {
+        if (brand) {
+          const filtered = this.products.filter(product => product.brandName === brand);
+          this.productsUpdate.next(filtered);
+        } else {
+          this.productsUpdate.next(this.products);
+        }
+      }
+
+    // 
 
 }
